@@ -1,0 +1,36 @@
+a = (200:-10:10)'
+b = log10(a)
+c = 10.^b
+d = c - a
+
+A = [pi/2,        3*i,   exp(pi)
+    log2(2),     2*pi,  log10(1)
+    log(exp(1)), pi^pi, cos(pi)]
+A(:, 2) = rand(3, 1)
+stulpsuma = sum(A)
+
+A = 6
+f = 2
+sigma = 1.5
+U1 = 4
+U2 = 2
+
+t = 0:0.005:2
+
+s_svarus = A * cos(2 * pi * f * t)
+n = sigma * randn(size(t))
+s = s_svarus + n
+
+s_virsh_U1 = s(s > U1)
+ 
+s_filtruotas = s
+s_filtruotas(abs(s_filtruotas) < U2) = 0
+
+dydis_nefiltruoto = length(s)
+dydis_atriktu = length(s_virsh_U1)
+
+max_filtruoto = max(s_filtruotas)
+min_filtruoto = min(s_filtruotas)
+
+A = input('Iveskite vektoriu A:')
+B = repelem(A, 4)
